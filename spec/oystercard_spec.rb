@@ -22,13 +22,13 @@ describe Oystercard do
   end
 
   it 'can touch in' do
-    subject.top_up(2)
+    subject.top_up(Oystercard::MIN_BALANCE)
     subject.touch_in
     expect(subject).to be_in_journey
   end
 
   it 'can touch out' do
-    subject.top_up(2)
+    subject.top_up(Oystercard::MIN_BALANCE)
     subject.touch_in
     subject.touch_out
     expect(subject).not_to be_in_journey
