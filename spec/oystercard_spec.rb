@@ -13,6 +13,21 @@ describe Oystercard do
     expect{subject.spend(10)}.to change {subject.balance}.by -10
   end
 
+  it 'is initially not in a journey' do
+  expect(subject).not_to be_in_journey
+  end
+
+  it 'can touch in' do
+    subject.touch_in
+    expect(subject).to be_in_journey
+  end
+
+  it 'can touch out' do
+    subject.touch_in
+    subject.touch_out
+    expect(subject).not_to be_in_journey
+  end
+
 describe "change balance" do
     it 'raise an error if max balance is reached' do
     expect{ subject.top_up(Oystercard::MAX_BALANCE + 1) }.to raise_error("Maximum balance of #{Oystercard::MAX_BALANCE} was exceeded")
